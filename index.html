@@ -2,29 +2,49 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PLACEHOLDER News</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Galactic Archives - Latest</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>PLACEHOLDER news</h1>
+    
+    <header class="container" style="padding-top: 1rem;">
+        <h1 style="text-align:center; color: var(--color-primary); font-size: 3.5rem; letter-spacing: -0.05em; text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);">
+            GALACTIC ARCHIVES
+        </h1>
+        
         <nav id="main-nav">
             <a href="index.html">Home</a>
             <a href="articleslist.html">All Articles</a>
+            <a href="categories.html">Categories</a>
         </nav>
     </header>
-    <main class="container">
+    
+    <main class="container" style="margin-top: 3rem;">
+        
         <section id="articles-list">
-            <h2>Latest Articles</h2>
-            <div class="container" id="news-container">
-                <!-- Articles will be loaded here -->
+            <h2 style="color: var(--color-secondary); font-size: 2rem; margin-bottom: 2rem; border-left: 4px solid var(--color-primary); padding-left: 1rem;">
+                Latest Datastream
+            </h2>
+            
+            <div class="container" id="news-container" style="display: grid; grid-template-columns: 1fr; gap: 3rem;">
+                <div class="article-preview dark-glass" style="--delay: 0s;">
+                    <div class="shine"></div>
+                    <h3><a href="#">The Algorithmic Singularity: A Threat or a Promise?</a></h3>
+                    <p class="meta">Technology | September 25, 2025 | 8 min read</p>
+                    <p>Experts debate the ethical and computational limits of self-improving AI and its impact on human employment within the next decade.</p>
+                    <a href="#" class="readmore">Read Transmission &rarr;</a>
+                </div>
             </div>
         </section>
+        
     </main>
-    <footer>
-        <p>&copy; 2025 PLACEHOLDER News. All rights reserved.</p>
+    
+    <footer style="text-align: center; margin-top: 5rem; padding: 2rem; color: #ffffff88;">
+        <p>&copy; 2025 Galactic Archives. All rights reserved. | Data Policy</p>
     </footer>
+    
     <script src="main.js"></script>
 </body>
-</html>
+</html>s
