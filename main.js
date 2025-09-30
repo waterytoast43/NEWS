@@ -1,70 +1,37 @@
-// ===== Article Data =====
-// In production, you can still keep this as a fallback or starter list.
 const articles = [
   {
     filename: "example-article.html",
-    title: "Breaking News: Example Headline",
+    title: "Quantum Tech Breakthrough!",
     date: "2025-09-30",
-    author: "Jane Doe",
-    summary:
-      "This is a summary of the example article. It introduces the topic and entices the reader to click and read more."
+    author: "Alex Rivera",
+    summary: "Scientists have discovered a new material that bends light in unexpected ways. Discover the implications for future tech."
+  },
+  {
+    filename: "example-article2.html",
+    title: "Urban Gardens Transform Cities",
+    date: "2025-09-28",
+    author: "Samira Patel",
+    summary: "Cities are going green in vertical gardens, bringing nature into dense urban areas and improving air quality."
   }
 ];
 
-// ===== Utility: Date formatter =====
-function formatDate(isoDate) {
-  try {
-    const options = { year: "numeric", month: "short", day: "numeric" };
-    return new Date(isoDate).toLocaleDateString(undefined, options);
-  } catch {
-    return isoDate;
-  }
+function formatDate(iso) {
+  return new Date(iso).toLocaleDateString(undefined, { year:'numeric', month:'short', day:'numeric' });
 }
 
-// ===== Create Article Preview =====
-function createArticlePreview(article) {
+function createArticlePreview(article, index) {
   return `
-    <div class="article-preview glass-panel fade-in">
-      <h3>
-        <a href="articles/${article.filename}" target="_blank" rel="noopener">
-          ${article.title}
-        </a>
-      </h3>
-      <div class="meta">
-        By ${article.author} &nbsp;|&nbsp; ${formatDate(article.date)}
-      </div>
+    <div class="article-preview custom-glass" style="--delay: ${index * 0.15}s">
+      <div class="shine"></div>
+      <h3><a href="articles/${article.filename}" target="_blank">${article.title}</a></h3>
+      <div class="meta">By ${article.author} | ${formatDate(article.date)}</div>
       <p>${article.summary}</p>
-      <a href="articles/${article.filename}" class="readmore" target="_blank" rel="noopener">
-        Read more &rarr;
-      </a>
+      <a href="articles/${article.filename}" class="readmore" target="_blank">Read more →</a>
     </div>
   `;
 }
 
-// ===== Render Articles =====
-function renderArticles(list) {
+document.addEventListener("DOMContentLoaded", () => {
   const container = document.getElementById("news-container");
-  if (!list || !list.length) {
-    container.innerHTML =
-      `<div class="empty-state glass-panel">No articles available yet.</div>`;
-    return;
-  }
-  container.innerHTML = list.map(createArticlePreview).join("");
-}
-
-// ===== Auto Fetch Optional =====
-// If you later host a /articles.json, this will load it automatically.
-async function fetchArticles() {
-  try {
-    const res = await fetch("/articles.json");
-    if (!res.ok) throw new Error("No JSON found");
-    const data = await res.json();
-    renderArticles(data);
-  } catch {
-    // fallback to local array if fetch fails
-    renderArticles(articles);
-  }
-}
-
-// ===== Init =====
-document.addEventListener("DOMContentLoaded", fetchArticles);
+  container.innerHTML = articles.map(createArticlePreview).join('');
+});
