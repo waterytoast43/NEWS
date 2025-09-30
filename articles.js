@@ -28,4 +28,15 @@ function renderCategoryPage() {
   `).join('');
 }
 
+function createArticlePreview(article) {
+  return `
+    <div class="article-preview">
+      <h3><a href="${article.filename}">${article.title}</a></h3>
+      <p>${article.summary}</p>
+      <small>By ${article.author} on ${article.date}</small>
+    </div>
+  `;
+}
+
+
 document.addEventListener("DOMContentLoaded", renderCategoryPage);
