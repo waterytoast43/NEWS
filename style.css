@@ -1,160 +1,264 @@
-/* ===== Body ===== */
+/*
+ * ========================================
+ * REVISED GLOBAL STYLES & BACKGROUND
+ * ========================================
+ */
+
+:root {
+  /* Define colors and shadows for consistency */
+  --color-primary: #00f0ff; /* Neon Cyan */
+  --color-secondary: #a0ffff; /* Lighter Cyan */
+  --color-text-light: #d0e8ff; /* Light Text */
+  --color-text-meta: #88e0ff; /* Meta/Accent Text */
+  --color-bg-dark: #0a0a0f;
+  --color-bg-mid: #14141f;
+  --color-bg-light: #1b1b2f;
+  
+  --shadow-neon-sm: 0 0 8px rgba(0, 255, 255, 0.2), 0 0 15px rgba(0, 255, 255, 0.05);
+  --shadow-neon-lg: 0 18px 55px rgba(0, 255, 255, 0.1), 0 0 25px rgba(0, 255, 255, 0.1);
+  --border-glass: 1px solid rgba(255, 255, 255, 0.08);
+
+  /* Define font weights */
+  --font-weight-regular: 400;
+  --font-weight-semi-bold: 600;
+  --font-weight-bold: 700;
+}
+
+/* ===== Body - Enhanced Animated Gradient ===== */
 body {
   font-family: 'Inter', sans-serif;
-  background: linear-gradient(160deg, #0a0a0f 0%, #14141f 100%);
-  color: #ffffffdd;
+  /* Use CSS variables for colors */
+  background: linear-gradient(-45deg, var(--color-bg-dark), var(--color-bg-mid), var(--color-bg-light), var(--color-bg-dark));
+  background-size: 400% 400%;
+  animation: gradientBG 20s ease infinite;
+  
+  color: #ffffffdd; /* Slightly more opaque text */
   margin: 0;
-  padding: 2rem 0;
+  padding: 3rem 0; /* Increased vertical padding */
   min-height: 100vh;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
+  line-height: 1.6; /* Ensure good readability */
 }
 
-/* Container */
-.container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  width: min(95%, 900px);
-}
-
-/* ===== Article Cards ===== */
-.article-preview.dark-glass {
-  position: relative;
-  overflow: hidden;
-  background: rgba(20, 20, 30, 0.25);
-  border-radius: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 2rem;
-  backdrop-filter: blur(22px) saturate(180%);
-  box-shadow: 0 12px 50px rgba(0, 255, 255, 0.05), 0 0 15px rgba(0, 255, 255, 0.05);
-  transition: transform 0.5s ease, box-shadow 0.5s ease, background 0.5s ease;
-  animation: fadeInUp 0.8s var(--delay) cubic-bezier(0.68, -0.55, 0.27, 1.55) forwards;
-  opacity: 0;
-}
-
-.article-preview.dark-glass:hover {
-  transform: translateY(-12px) scale(1.04);
-  box-shadow: 0 25px 60px rgba(0, 255, 255, 0.18);
-  background: rgba(30, 30, 45, 0.35);
-}
-
-
-/* Shine effect */
-.article-preview .shine {
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: linear-gradient(120deg, rgba(255,255,255,0.2) 0%, transparent 60%);
-  transform: rotate(25deg);
-  pointer-events: none;
-  mix-blend-mode: overlay;
-}
-
-/* Text */
-.article-preview h3 {
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-  color: #00f0ff;
-}
-.article-preview h3 a {
-  color: inherit;
-  text-decoration: none;
-}
-.article-preview .meta {
-  color: #88e0ff;
-  font-size: 0.95rem;
-  margin-bottom: 1rem;
-}
-.article-preview p {
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: #d0e8ff;
-}
-.article-preview .readmore {
-  margin-top: 1rem;
-  display: inline-block;
-  color: #00f0ff;
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.25s ease;
-}
-.article-preview .readmore:hover {
-  color: #a0ffff;
-}
-
-/* Fade-in animation */
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(40px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-
-/* Responsive */
-@media (max-width: 700px) {
-  .article-preview h3 { font-size: 1.4rem; }
-  .article-preview { padding: 1.5rem; }
-}
-
-/* Animated Gradient Background */
-body {
-  background: linear-gradient(-45deg, #0a0a0f, #14141f, #1b1b2f, #0f0f1a);
-  background-size: 400% 400%;
-  animation: gradientBG 20s ease infinite;
-}
-
+/* Keyframes for Animated Gradient Background */
 @keyframes gradientBG {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
 
+/*
+ * ========================================
+ * LAYOUT & CONTAINERS
+ * ========================================
+ */
+
+/* Container - Switched to Grid Layout for Main Content */
 .container {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 3rem; /* bigger gap between articles */
-  width: min(95%, 1000px);
+  gap: 3rem; 
+  width: min(95%, 1100px); /* Increased max-width for modern screens */
+  padding: 0 1rem; /* Added horizontal padding */
 }
 
-/* Optional for category page */
+/* Optional for category page - Refined Grid */
 .category-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2.5rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Better `auto-fit` for more flexible columns */
+  gap: 3rem; /* Consistent gap */
+  margin-top: 2.5rem;
 }
 
+/*
+ * ========================================
+ * ARTICLE CARDS (Dark Glass)
+ * ========================================
+ */
+
+.article-preview.dark-glass {
+  position: relative;
+  overflow: hidden;
+  /* Glass effect enhancements */
+  background: rgba(20, 20, 30, 0.35); /* Slightly darker/more saturated base */
+  border-radius: 20px; /* Slightly smaller radius for sleekness */
+  border: var(--border-glass);
+  padding: 2.5rem; /* Increased padding for more breathing room */
+  backdrop-filter: blur(28px) saturate(200%); /* Stronger blur and saturation */
+  
+  /* Enhanced dual-layer shadow with neon glow */
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), /* Darker background shadow for depth */
+              var(--shadow-neon-sm); /* Subtle neon accent */
+  
+  /* Smoother, more exciting animation and transition */
+  transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), /* Smoother ease-out cubic-bezier */
+              box-shadow 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              background 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+              
+  animation: fadeInUp 1s var(--delay, 0s) cubic-bezier(0.215, 0.610, 0.355, 1.000) forwards; /* Smoother, non-bouncy animation */
+  opacity: 0;
+}
+
+.article-preview.dark-glass:hover {
+  transform: translateY(-10px) scale(1.02); /* More subtle hover lift/scale */
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), /* Deeper dark shadow */
+              var(--shadow-neon-lg); /* More pronounced neon glow on hover */
+  background: rgba(30, 30, 45, 0.45); /* Darker, more pronounced glass background */
+}
+
+
+/* Shine effect - Refined angle and blend */
+.article-preview .shine {
+  position: absolute;
+  top: -70%; /* Adjusted for a better starting point */
+  left: -70%;
+  width: 200%;
+  height: 200%;
+  /* More subtle shine */
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 65%);
+  transform: rotate(35deg); /* Sharper angle */
+  pointer-events: none;
+  mix-blend-mode: soft-light; /* Changed to 'soft-light' for a more delicate effect */
+}
+
+/*
+ * ========================================
+ * TYPOGRAPHY
+ * ========================================
+ */
+
+/* Text - Enhanced Typography Hierarchy */
+.article-preview h3 {
+  font-size: 2.2rem; /* Larger, more impactful heading */
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 0.5rem;
+  color: var(--color-primary);
+  letter-spacing: -0.03em; /* Slightly tighter kerning for impact */
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.4); /* Subtle text glow */
+}
+.article-preview h3 a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+.article-preview h3 a:hover {
+  color: var(--color-secondary);
+}
+
+.article-preview .meta {
+  color: var(--color-text-meta);
+  font-size: 0.9rem; /* Slightly smaller for meta info */
+  font-weight: var(--font-weight-semi-bold);
+  opacity: 0.8;
+  margin-bottom: 1.2rem; /* More separation from paragraph */
+}
+
+.article-preview p {
+  font-size: 1.1rem; /* Slightly larger base font for readability */
+  line-height: 1.7; /* Increased line-height for better flow */
+  color: var(--color-text-light);
+  font-weight: var(--font-weight-regular);
+}
+
+.article-preview .readmore {
+  margin-top: 1.5rem; /* More space */
+  display: inline-block;
+  color: var(--color-primary);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.3s ease;
+}
+.article-preview .readmore:hover {
+  color: var(--color-secondary);
+  border-bottom: 2px solid var(--color-primary);
+  transform: translateX(5px); /* Subtle shift */
+}
+
+/* Fade-in animation - Refined timing */
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(60px); } /* Start a bit lower */
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/*
+ * ========================================
+ * NAVIGATION (Main Nav)
+ * ========================================
+ */
 
 #main-nav {
   display: flex;
   justify-content: center;
-  gap: 2rem;
-  margin-bottom: 2rem;
-  backdrop-filter: blur(20px);
-  background: rgba(20,20,30,0.3);
-  border-radius: 30px;
-  padding: 0.6rem 1.5rem;
-  box-shadow: 0 8px 20px rgba(0,255,255,0.05);
+  gap: 1.5rem; /* Slightly tighter spacing */
+  margin-bottom: 3rem; /* More separation from content */
+  
+  /* Glass effect for Nav - slightly different look */
+  backdrop-filter: blur(16px);
+  background: rgba(25,25,35,0.4);
+  border: var(--border-glass);
+  border-radius: 12px; /* Smaller radius */
+  padding: 0.5rem 1rem;
+  box-shadow: var(--shadow-neon-sm);
   transition: all 0.4s ease;
 }
 
 #main-nav a {
-  color: #00f0ff;
+  color: var(--color-primary);
   text-decoration: none;
-  font-weight: 600;
-  font-size: 1.05rem;
-  padding: 0.6rem 1rem;
-  border-radius: 14px;
-  transition: all 0.3s ease;
+  font-weight: var(--font-weight-semi-bold);
+  font-size: 1rem; 
+  padding: 0.8rem 1.2rem; /* More padding */
+  border-radius: 8px; /* Smaller radius for buttons */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 #main-nav a:hover {
-  background: rgba(0, 255, 255, 0.15);
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 6px 20px rgba(0, 255, 255, 0.25);
+  background: rgba(0, 255, 255, 0.1);
+  transform: translateY(-2px); /* More subtle lift */
+  box-shadow: 0 4px 15px rgba(0, 255, 255, 0.3); /* Accentuated shadow on hover */
 }
 
+
+/*
+ * ========================================
+ * RESPONSIVE (Mobile adjustments)
+ * ========================================
+ */
+
+@media (max-width: 900px) {
+  body {
+    padding: 2rem 0;
+  }
+  .container {
+    gap: 2rem;
+  }
+  #main-nav {
+    flex-wrap: wrap; /* Allow navigation to wrap on smaller screens */
+    margin-bottom: 2rem;
+    padding: 0.5rem;
+    border-radius: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .article-preview h3 { 
+    font-size: 1.7rem; 
+    line-height: 1.2;
+  }
+  .article-preview p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  .article-preview { 
+    padding: 1.5rem; 
+    border-radius: 16px;
+  }
+  #main-nav a {
+    font-size: 0.9rem;
+    padding: 0.6rem 0.8rem;
+  }
+}
