@@ -6,6 +6,14 @@ const articles = [
     author: "John Doe",
     category: "frig",
     summary: "Lucien sucks"
+  },
+  {
+    filename: "example-article.html",
+    title: "Example article",
+    date: "0001-01-01",
+    author: "John Doe",
+    category: "Science",
+    summary: "Lucien sucks"
   }
 ];
 
