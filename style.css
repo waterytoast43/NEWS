@@ -112,3 +112,19 @@ body {
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
 }
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem; /* bigger gap between articles */
+  width: min(95%, 1000px);
+}
+
+/* Optional for category page */
+.category-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 2.5rem;
+  margin-top: 2rem;
+}
+
