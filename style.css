@@ -128,3 +128,33 @@ body {
   margin-top: 2rem;
 }
 
+
+#main-nav {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(20px);
+  background: rgba(20,20,30,0.3);
+  border-radius: 30px;
+  padding: 0.6rem 1.5rem;
+  box-shadow: 0 8px 20px rgba(0,255,255,0.05);
+  transition: all 0.4s ease;
+}
+
+#main-nav a {
+  color: #00f0ff;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.6rem 1rem;
+  border-radius: 14px;
+  transition: all 0.3s ease;
+}
+
+#main-nav a:hover {
+  background: rgba(0, 255, 255, 0.15);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(0, 255, 255, 0.25);
+}
+
