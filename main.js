@@ -21,7 +21,7 @@ function formatDate(iso) {
 
 function createArticlePreview(article, index) {
   return `
-    <div class="article-preview custom-glass" style="--delay: ${index * 0.15}s">
+    <div class="article-preview dark-glass" style="--delay: ${index * 0.15}s">
       <div class="shine"></div>
       <h3><a href="articles/${article.filename}" target="_blank">${article.title}</a></h3>
       <div class="meta">By ${article.author} | ${formatDate(article.date)}</div>
