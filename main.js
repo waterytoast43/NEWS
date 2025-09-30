@@ -1,17 +1,10 @@
 const articles = [
   {
     filename: "example-article.html",
-    title: "Quantum Tech Breakthrough!",
-    date: "2025-09-30",
-    author: "Alex Rivera",
-    summary: "Scientists have discovered a new material that bends light in unexpected ways. Discover the implications for future tech."
-  },
-  {
-    filename: "example-article2.html",
-    title: "Urban Gardens Transform Cities",
-    date: "2025-09-28",
-    author: "Samira Patel",
-    summary: "Cities are going green in vertical gardens, bringing nature into dense urban areas and improving air quality."
+    title: "Example article",
+    date: "0001-01-01",
+    author: "John Doe",
+    summary: "Lucien sucks"
   }
 ];
 
