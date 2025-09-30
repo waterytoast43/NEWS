@@ -99,3 +99,16 @@ body {
   .article-preview h3 { font-size: 1.4rem; }
   .article-preview { padding: 1.5rem; }
 }
+
+/* Animated Gradient Background */
+body {
+  background: linear-gradient(-45deg, #0a0a0f, #14141f, #1b1b2f, #0f0f1a);
+  background-size: 400% 400%;
+  animation: gradientBG 20s ease infinite;
+}
+
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
