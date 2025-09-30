@@ -1,154 +1,154 @@
-/* ===== Reset & Base ===== */
+/* ===== Base ===== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-
-html, body {
-    height: 100%;
-}
-
 body {
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-    background: linear-gradient(135deg, #dbe6f6 0%, #f0f4ff 100%);
-    min-height: 100vh;
-    color: #1c1f26;
-    letter-spacing: 0.01em;
-    display: flex;
-    flex-direction: column;
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(135deg, #e3e8f4 0%, #f4f8fe 100%);
+  color: #1a1e26;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
 }
 
-/* ===== Glass Utilities ===== */
-.glass {
-    background: rgba(255, 255, 255, 0.15);
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    backdrop-filter: blur(18px) saturate(180%);
-    -webkit-backdrop-filter: blur(18px) saturate(180%);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-    border-radius: 20px;
+/* ===== Glass Panel Utility ===== */
+.glass-panel {
+  position: relative;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 }
 
-/* ===== Header ===== */
+/* Optional “lensing / highlight stripe” */
+.glass-panel::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at top left,
+    rgba(255,255,255,0.4),
+    transparent 60%
+  );
+  transform: translateX(-30%) translateY(-30%) rotate(25deg);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  opacity: 0.6;
+  transition: opacity 0.3s;
+}
+
+/* ===== Layout Panels ===== */
 header {
-    @apply glass;
-    padding: 2.5rem 2rem 2rem;
-    text-align: center;
-    margin: 1.5rem auto 0 auto;
-    width: min(95%, 980px);
-    position: relative;
+  width: min(95%, 900px);
+  margin: 2rem auto 1rem;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+header.glass-panel {
+  /* inherits glass style */
 }
 
 header h1 {
-    font-size: clamp(2.2rem, 4vw, 3rem);
-    font-weight: 800;
-    color: #ffffffee;
-    text-shadow: 0 4px 16px rgba(0,0,0,0.2);
-    margin-bottom: 0.6rem;
+  font-size: clamp(2.2rem, 5vw, 3rem);
+  color: #ffffffee;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.2);
 }
 
+/* Navigation links */
 nav {
-    margin-top: 1.2rem;
+  margin-top: 1.2rem;
 }
-
 nav a {
-    display: inline-block;
-    color: #ffffffdd;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 0.6rem 1.4rem;
-    border-radius: 14px;
-    transition: all 0.25s ease;
+  display: inline-block;
+  color: #f0f5ffcc;
+  text-decoration: none;
+  margin: 0 12px;
+  padding: 0.6rem 1.4rem;
+  border-radius: 14px;
+  transition: background 0.25s, transform 0.25s;
 }
-
 nav a:hover {
-    background: rgba(255,255,255,0.18);
-    color: #e0f0ff;
-    box-shadow: 0 4px 14px rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.25);
+  transform: translateY(-2px);
 }
 
-/* ===== Main Container ===== */
+/* Main container */
 .container {
-    @apply glass;
-    flex: 1;
-    max-width: 980px;
-    margin: 2.5rem auto;
-    padding: 3rem 2.5rem;
-    border-radius: 24px;
+  width: min(95%, 900px);
+  margin: 2rem auto;
+  padding: 2.5rem 2rem;
+}
+.container.glass-panel {
+  /* glass look */
 }
 
-/* ===== Articles ===== */
-#news-container {
-    display: flex;
-    flex-direction: column;
-    gap: 2.5rem;
-}
-
+/* Article preview */
 .article-preview {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 18px;
-    padding: 2rem;
-    transition: all 0.25s ease;
+  margin-bottom: 2rem;
+  padding: 2rem;
 }
-
-.article-preview:hover {
-    background: rgba(255,255,255,0.22);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+.article-preview.glass-panel {
+  transition: transform 0.3s, background 0.3s;
+}
+.article-preview.glass-panel:hover {
+  background: rgba(255,255,255,0.2);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.13);
 }
 
 .article-preview h3 {
-    font-size: 1.8rem;
-    color: #ffffff;
-    margin-bottom: 0.7rem;
-    font-weight: 700;
-    transition: color 0.25s ease;
-    text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  font-size: 1.8rem;
+  color: #ffffffee;
+  text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+  margin-bottom: 0.7rem;
 }
-
-.article-preview h3:hover {
-    color: #cfe8ff;
-    cursor: pointer;
-}
-
 .article-preview .meta {
-    color: #e8ecf5cc;
-    font-size: 0.95rem;
-    margin-bottom: 0.8rem;
-    font-weight: 500;
+  color: #e0e6f1cc;
+  margin-bottom: 1rem;
 }
-
 .article-preview p {
-    color: #f5f7fa;
-    font-size: 1.08rem;
-    line-height: 1.7;
+  color: #eef0f8;
+  line-height: 1.6;
+  font-size: 1.05rem;
 }
 
-/* ===== Footer ===== */
+/* Footer */
 footer {
-    @apply glass;
-    text-align: center;
-    padding: 1.5rem 1rem;
-    margin: 3rem auto 1.5rem auto;
-    width: min(95%, 980px);
-    border-radius: 20px;
-    color: #ffffffdd;
-    font-size: 1.05rem;
-    letter-spacing: 0.02em;
+  width: min(95%, 900px);
+  margin: 3rem auto 2rem;
+  padding: 1.8rem 1.2rem;
+  text-align: center;
+}
+footer.glass-panel {
+  /* apply glass style */
+}
+footer {
+  color: #f0f5ffcc;
+  font-size: 1.03rem;
 }
 
-/* ===== Responsive ===== */
+/* ===== Responsive tweaks ===== */
 @media (max-width: 700px) {
-    header, .container, footer {
-        width: 92%;
-        padding: 1.5rem 1rem;
-    }
-    .article-preview h3 {
-        font-size: 1.4rem;
-    }
-    nav a {
-        padding: 0.4rem 1rem;
-        font-size: 1rem;
-    }
+  nav a {
+    margin: 0 8px;
+    font-size: 0.95rem;
+    padding: 0.5rem 1.2rem;
+  }
+  .article-preview h3 {
+    font-size: 1.4rem;
+  }
+  .container {
+    padding: 1.8rem 1.2rem;
+  }
+  header, footer {
+    padding: 1.5rem 1rem;
+  }
 }
